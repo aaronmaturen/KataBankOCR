@@ -14,8 +14,7 @@ public:
 	OCR();
 	virtual ~OCR();
 
-	int faceValue() const;
-	void roll();
+	bool compareScannedCharacters(char scannedCharacter[4][3], char definedCharacter[4][3]);
 	char convertScannedCharacter(char scannedCharacter[4][3]);
 };
 

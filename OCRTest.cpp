@@ -12,21 +12,6 @@ TEST_GROUP(OCR) {
 
 };
 
-//TEST(OCR, InitialValueAfterCreationIsValid){
-//	OCR o;
-//	CHECK(o.faceValue() >= 1);
-//	CHECK(o.faceValue() <= 6);
-//}
-//
-//TEST(OCR, ValuesRolledValid){
-//	OCR o;
-//	for(int i = 0; i < 60000; ++i) {
-//		o.roll();
-//		CHECK(o.faceValue() >= 1);
-//		CHECK(o.faceValue() <= 6);
-//	}
-//}
-
 TEST(OCR, TestEmptyCharacterRecognition){
 	OCR o;
 	char scannedChar[4][3] = {
@@ -36,6 +21,17 @@ TEST(OCR, TestEmptyCharacterRecognition){
 			{' ',' ',' '}
 	};
 	CHECK_EQUAL(o.convertScannedCharacter(scannedChar),'?');
+}
+
+TEST(OCR, TestScannedNumberOne){
+	OCR o;
+	char scannedChar[4][3] = {
+			{' ',' ',' '},
+			{' ',' ','|'},
+			{' ',' ','|'},
+			{' ',' ',' '}
+	};
+	CHECK_EQUAL(o.convertScannedCharacter(scannedChar),'1');
 }
 
 
