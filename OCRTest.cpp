@@ -137,6 +137,11 @@ TEST(OCR, binary){
 	CHECK_EQUAL(o.bin2dec("101010101010101010101010"),11184810);
 }
 
+TEST(OCR, NewBitset){
+	OCR o;
+	CHECK_EQUAL(o.dec2bin(51),"000000110011");
+}
+
 TEST(OCR, TestGoodAccount){
 	OCR o;
 	CHECK_EQUAL(o.validateAccount("457508000"),"");

@@ -38,6 +38,11 @@ int OCR::bin2dec(std::string binary){
 	return lineCode;
 }
 
+std::string OCR::dec2bin(int const seed){
+	std::bitset<12> binary (seed);
+	return binary.to_string();
+}
+
 std::string OCR::serializeScannedCharacter(std::string lineOne, std::string lineTwo, std::string lineThree, std::string lineFour){
 	return parseLine(lineOne) + parseLine(lineTwo) + parseLine(lineThree) + parseLine(lineFour);
 }

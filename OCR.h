@@ -11,6 +11,7 @@
 
 #include <string>
 #include <math.h>
+#include <bitset>
 
 class OCR {
 public:
@@ -24,6 +25,7 @@ public:
 	int bin2dec(std::string);
 	std::string convertScannedLines(std::string, std::string, std::string, std::string);
 	std::string validateAccount(std::string);
+	std::string dec2bin(const int);
 	bool checkAccountForMissingValues(std::string);
 	bool checkAccountSum(std::string);
 };
