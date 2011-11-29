@@ -31,6 +31,10 @@ std::bitset<12> OCR::newBitStream(std::string seed){
 	return aBitset;
 }
 
+std::bitset<12> OCR::newBitStream(std::bitset<12> seed){
+	return seed;
+}
+
 std::bitset<12> OCR::newBitStream(int seed){
 	std::bitset<12> aBitset (seed);
 	return aBitset;
