@@ -161,4 +161,23 @@ TEST(OCR, TestAccountWithIvalidChecksum){
 	CHECK_EQUAL(o.validateAccount("664371495")," ERR");
 }
 
+TEST(OCR, TestComparingBitStreams){
+	OCR o;
+	CHECK_EQUAL(o.compareBitStreams(o.newBitStream(55),o.newBitStream(55)),0);
+}
+
+TEST(OCR, TestComparingBitStreamsOffByOne){
+	OCR o;
+	CHECK_EQUAL(o.compareBitStreams(o.newBitStream(7),o.newBitStream(6)),1);
+}
+
+TEST(OCR, TestComparingBitStreamsFromStringAndInteger){
+	OCR o;
+	CHECK_EQUAL(o.compareBitStreams(o.newBitStream("110011101001"),o.newBitStream(3305)),0);
+}
+
+TEST(OCR, TestComparingBitStreamsExtremeDifferenceInStrings){
+	OCR o;
+	CHECK_EQUAL(o.compareBitStreams(o.newBitStream("11111"),o.newBitStream("00000")),5);
+}
 

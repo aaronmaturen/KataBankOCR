@@ -31,6 +31,7 @@ public:
 
 	std::bitset<12> newBitStream(std::string);
 	std::bitset<12> newBitStream(int);
+	int compareBitStreams(std::bitset<12>, std::bitset<12>);
 };
 
 #endif

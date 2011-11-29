@@ -27,13 +27,13 @@ std::string OCR::parseLine(std::string line){
 }
 
 std::bitset<12> OCR::newBitStream(std::string seed){
-	std::bitset<12> stream (seed);
-	return stream;
+	std::bitset<12> aBitset (seed);
+	return aBitset;
 }
 
 std::bitset<12> OCR::newBitStream(int seed){
-	std::bitset<12> stream (seed);
-	return stream;
+	std::bitset<12> aBitset (seed);
+	return aBitset;
 }
 
 int OCR::bin2dec(std::string seed){
@@ -46,6 +46,10 @@ std::string OCR::dec2bin(int const seed){
 
 std::string OCR::serializeScannedCharacter(std::string lineOne, std::string lineTwo, std::string lineThree, std::string lineFour){
 	return parseLine(lineOne) + parseLine(lineTwo) + parseLine(lineThree) + parseLine(lineFour);
+}
+
+int OCR::compareBitStreams(std::bitset<12> first, std::bitset<12> second){
+	return (first^=second).count();
 }
 
 
