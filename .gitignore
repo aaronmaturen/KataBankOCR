@@ -13,3 +13,8 @@
 
 #Debug Directory
 Debug/**/*
+
+#Eclipse Settings
+.project
+.cproject
+
