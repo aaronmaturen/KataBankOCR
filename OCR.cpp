@@ -26,14 +26,22 @@ std::string OCR::parseLine(std::string line){
 	return lineCode;
 }
 
-int OCR::bin2dec(std::string binaryString){
-	std::bitset<12> binary (binaryString);
-	return binary.to_ulong();
+std::bitset<12> OCR::newBitStream(std::string seed){
+	std::bitset<12> stream (seed);
+	return stream;
+}
+
+std::bitset<12> OCR::newBitStream(int seed){
+	std::bitset<12> stream (seed);
+	return stream;
+}
+
+int OCR::bin2dec(std::string seed){
+	return newBitStream(seed).to_ulong();
 }
 
 std::string OCR::dec2bin(int const seed){
-	std::bitset<12> binary (seed);
-	return binary.to_string();
+	return newBitStream(seed).to_string();
 }
 
 std::string OCR::serializeScannedCharacter(std::string lineOne, std::string lineTwo, std::string lineThree, std::string lineFour){
