@@ -134,7 +134,6 @@ TEST(OCR, binary){
 	CHECK_EQUAL(o.bin2dec("0"),0);
 	CHECK_EQUAL(o.bin2dec("10"),2);
 	CHECK_EQUAL(o.bin2dec("101010101010"),2730);
-	CHECK_EQUAL(o.bin2dec("101010101010101010101010"),11184810);
 }
 
 TEST(OCR, NewBitset){

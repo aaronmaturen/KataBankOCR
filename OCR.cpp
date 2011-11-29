@@ -26,16 +26,9 @@ std::string OCR::parseLine(std::string line){
 	return lineCode;
 }
 
-int OCR::bin2dec(std::string binary){
-	int lineCode = 0;
-	int i = 0;
-	for(std::string::const_iterator it = binary.end(); it >= binary.begin(); --it){
-		if(*it=='0'||*it=='1'){
-			lineCode += ((*it=='0')?0:pow(2,i));
-			i++;
-		}
-	}
-	return lineCode;
+int OCR::bin2dec(std::string binaryString){
+	std::bitset<12> binary (binaryString);
+	return binary.to_ulong();
 }
 
 std::string OCR::dec2bin(int const seed){
@@ -107,39 +100,39 @@ char OCR::translateScannedCharacter(int scannedCharacter){
 	const int numberZero = 1400;
 
 	switch(scannedCharacter){
-	case numberOne:
-		value = '1';
-		break;
-	case numberTwo:
-		value = '2';
-		break;
-	case numberThree:
-		value = '3';
-		break;
-	case numberFour:
-		value = '4';
-		break;
-	case numberFive:
-		value = '5';
-		break;
-	case numberSix:
-		value = '6';
-		break;
-	case numberSeven:
-		value = '7';
-		break;
-	case numberEight:
-		value = '8';
-		break;
-	case numberNine:
-		value = '9';
-		break;
-	case numberZero:
-		value = '0';
-		break;
-	default:
-		value = '?';
-		break;
+		case numberOne:
+			value = '1';
+			break;
+		case numberTwo:
+			value = '2';
+			break;
+		case numberThree:
+			value = '3';
+			break;
+		case numberFour:
+			value = '4';
+			break;
+		case numberFive:
+			value = '5';
+			break;
+		case numberSix:
+			value = '6';
+			break;
+		case numberSeven:
+			value = '7';
+			break;
+		case numberEight:
+			value = '8';
+			break;
+		case numberNine:
+			value = '9';
+			break;
+		case numberZero:
+			value = '0';
+			break;
+		default:
+			value = '?';
+			break;
 	}
 	return value;
 }
