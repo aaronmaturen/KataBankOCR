@@ -56,6 +56,14 @@ char OCR::processScannedCharacter(std::string lineOne, std::string lineTwo, std:
 	return translateScannedCharacter(bin2dec(serializeScannedCharacter(lineOne,lineTwo,lineThree,lineFour)));
 }
 
+std::string OCR::validateAccount(std::string accountNumber){
+	if(accountNumber.find("?")!=std::string::npos){
+		return "ILL";
+	} else {
+		return "";
+	}
+}
+
 char OCR::translateScannedCharacter(int scannedCharacter){
 	char value;
 	const int numberOne = 72;

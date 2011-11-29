@@ -137,5 +137,14 @@ TEST(OCR, binary){
 	CHECK_EQUAL(o.bin2dec("101010101010101010101010"),11184810);
 }
 
+TEST(OCR, TestGoodAccount){
+	OCR o;
+	CHECK_EQUAL(o.validateAccount("457508000"),"");
+}
+
+TEST(OCR, TestAccountWithUnkownNumber){
+	OCR o;
+	CHECK_EQUAL(o.validateAccount("12?456789"),"ILL");
+}
 
 
