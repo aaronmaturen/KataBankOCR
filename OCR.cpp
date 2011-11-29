@@ -90,7 +90,6 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 	std::string returnString = "";
 	std::string anAccountNumber;
 	int location;
-	int value;
 	switch(countUnknownCharacters(accountNumber)){
 	case 0:
 		returnString = accountNumber;
@@ -109,6 +108,24 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 	default:
 		returnString = " ILL";
 		break;
+	}
+	return returnString;
+}
+
+std::string OCR::fixBadCheckSum(std::string accountNumber){
+	const int numbers[10] = {1400,72,1264,1240,456,1432,1464,1096,1528,1496};
+	std::string returnString = "AMB";
+	std::string anAccountNumber;
+	for(int j = 0; j<=9; j++){
+		for(int i = 0; i <= 9; i++){
+			if(compareBitStreams(newBitStream(numbers[j]),newBitStream(numbers[int(accountNumber[i])-48])) == 1){
+				anAccountNumber = accountNumber;
+				anAccountNumber[i] = char(48+j);
+				if(processCheckSum(anAccountNumber) == 0){
+					returnString += " " + anAccountNumber;
+				}
+			}
+		}
 	}
 	return returnString;
 }
@@ -145,7 +162,7 @@ char OCR::translateScannedCharacter(int scannedCharacter){
 	const int numberSix = 1464;
 	const int numberSeven = 1096;
 	const int numberEight = 1528;
-	const int numberNine = 1480;
+	const int numberNine = 1496;
 	const int numberZero = 1400;
 
 	switch(scannedCharacter){

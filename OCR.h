@@ -35,6 +35,7 @@ public:
 	std::bitset<12> newBitStream(std::bitset<12>);
 	int compareBitStreams(std::bitset<12>, std::bitset<12>);
 	std::string fixMissingDigit(std::string);
+	std::string fixBadCheckSum(std::string);
 	int countUnknownCharacters(std::string);
 };
 

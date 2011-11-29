@@ -97,7 +97,7 @@ TEST(OCR, TestScannedNumberNine){
 	OCR o;
 	std::string lineOne   = " _ ";
 	std::string lineTwo   = "|_|";
-	std::string lineThree = "  |";
+	std::string lineThree = " _|";
 	std::string lineFour  = "   ";
 	CHECK_EQUAL(o.processScannedCharacter(lineOne,lineTwo,lineThree,lineFour),'9');
 }
@@ -115,7 +115,7 @@ TEST(OCR, TestStringOfIncrementalNumbers){
 	OCR o;
 	std::string lineOne   = "    _  _     _  _  _  _  _ ";
 	std::string lineTwo   = "  | _| _||_||_ |_   ||_||_|";
-	std::string lineThree = "  ||_  _|  | _||_|  ||_|  |";
+	std::string lineThree = "  ||_  _|  | _||_|  ||_| _|";
 	std::string lineFour  = "                           ";
 	CHECK_EQUAL(o.convertScannedLines(lineOne, lineTwo, lineThree, lineFour),"123456789");
 }
@@ -124,7 +124,7 @@ TEST(OCR, TestStringOfRandomNumbers){
 	OCR o;
 	std::string lineOne   = " _  _  _  _  _  _  _  _  _ ";
 	std::string lineTwo   = "  || | _||_||_||_   |  ||_|";
-	std::string lineThree = "  ||_| _|  |  ||_|  |  |  |";
+	std::string lineThree = "  ||_| _| _| _||_|  |  | _|";
 	std::string lineFour  = "                           ";
 	CHECK_EQUAL(o.convertScannedLines(lineOne, lineTwo, lineThree, lineFour),"703996779");
 }
@@ -220,3 +220,20 @@ TEST(OCR, TestCountOneUnknownCharacters){
 	OCR o;
 	CHECK_EQUAL(o.countUnknownCharacters("0541123?5013"),1);
 }
+
+TEST(OCR, TestWrongChecksumOneSolution){
+	OCR o;
+	CHECK_EQUAL(o.fixBadCheckSum("111111111"),"AMB 711111111");
+}
+
+TEST(OCR, TestWrongChecksumTwoSolutions){
+	OCR o;
+	CHECK_EQUAL(o.fixBadCheckSum("555555555"),"AMB 555655555 559555555");
+}
+
+TEST(OCR, TestWrongChecksumThreeSolutions){
+	OCR o;
+	CHECK_EQUAL(o.fixBadCheckSum("888888888"),"AMB 888888880 888886888 888888988");
+}
+
+
