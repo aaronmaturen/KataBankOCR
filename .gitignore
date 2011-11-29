@@ -11,8 +11,14 @@
 *.la
 *.a
 
+#CLEAN OSX STUFFS
+.DS_Store
+
 #Debug Directory
 Debug/
+
+#Settings Directory
+.settings/
 
 #Eclipse Settings
 .project
