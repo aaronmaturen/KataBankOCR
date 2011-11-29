@@ -146,6 +146,11 @@ TEST(OCR, TestGoodAccount){
 	CHECK_EQUAL(o.validateAccount("457508000"),"");
 }
 
+TEST(OCR, TestAccountCheckSumWithAnUnkownZero){
+	OCR o;
+	CHECK_EQUAL(o.processCheckSum("4575080?0"),0);
+}
+
 TEST(OCR, TestAccountWithUnkownNumber){
 	OCR o;
 	CHECK_EQUAL(o.validateAccount("12?456789")," ILL");

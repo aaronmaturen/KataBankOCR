@@ -81,7 +81,7 @@ int OCR::processCheckSum(std::string accountNumber){
 	int i = 0;
 	int sum = 0;
 	for(std::string::const_iterator it = accountNumber.end(); it >= accountNumber.begin(); --it){
-		sum += (*it -48) * i++;
+		sum += ((*it!='?')?(*it -48):0) * i++;
 	}
 	return sum % 11;
 }
