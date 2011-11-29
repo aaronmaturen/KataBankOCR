@@ -94,6 +94,10 @@ bool OCR::checkAccountSum(std::string accountNumber){
 	}
 }
 
+int OCR::countUnknownCharacters(std::string s){
+	return std::count(s.begin(), s.end(), '?');
+}
+
 std::string OCR::validateAccount(std::string accountNumber){
 	if(!checkAccountForMissingValues(accountNumber)){
 			return " ILL";

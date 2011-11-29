@@ -12,6 +12,7 @@
 #include <string>
 #include <math.h>
 #include <bitset>
+#include <algorithm>
 
 class OCR {
 public:
@@ -33,6 +34,8 @@ public:
 	std::bitset<12> newBitStream(int);
 	std::bitset<12> newBitStream(std::bitset<12>);
 	int compareBitStreams(std::bitset<12>, std::bitset<12>);
+
+	int countUnknownCharacters(std::string);
 };
 
 #endif

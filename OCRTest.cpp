@@ -181,3 +181,17 @@ TEST(OCR, TestComparingBitStreamsExtremeDifferenceInStrings){
 	CHECK_EQUAL(o.compareBitStreams(o.newBitStream("11111"),o.newBitStream("00000")),5);
 }
 
+TEST(OCR, TestCountUnknownCharacters){
+	OCR o;
+	CHECK_EQUAL(o.countUnknownCharacters("0541?????013"),5);
+}
+
+TEST(OCR, TestCountZeroUnknownCharacters){
+	OCR o;
+	CHECK_EQUAL(o.countUnknownCharacters("054112345013"),0);
+}
+
+TEST(OCR, TestCountOneUnknownCharacters){
+	OCR o;
+	CHECK_EQUAL(o.countUnknownCharacters("0541123?5013"),1);
+}
