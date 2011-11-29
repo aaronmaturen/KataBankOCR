@@ -151,6 +151,26 @@ TEST(OCR, TestAccountCheckSumWithAnUnkownZero){
 	CHECK_EQUAL(o.processCheckSum("4575080?0"),0);
 }
 
+TEST(OCR, TestRandomGoodAccountCheckSum){
+	OCR o;
+	CHECK_EQUAL(o.processCheckSum("732540941"),0);
+}
+
+TEST(OCR, TestFillInMissingDigit){
+	OCR o;
+	CHECK_EQUAL(o.fixMissingDigit("78?639"),"AMB 787639");
+}
+
+TEST(OCR, TestFillInMissingDigitFromDescription){
+	OCR o;
+	CHECK_EQUAL(o.fixMissingDigit("?23456789"),"AMB 123456789");
+}
+
+TEST(OCR, TestFillInAnotherMissingDigit){
+	OCR o;
+	CHECK_EQUAL(o.fixMissingDigit("7325?0941"),"AMB 732540941");
+}
+
 TEST(OCR, TestAccountWithUnkownNumber){
 	OCR o;
 	CHECK_EQUAL(o.validateAccount("12?456789")," ILL");

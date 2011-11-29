@@ -86,6 +86,33 @@ int OCR::processCheckSum(std::string accountNumber){
 	return sum % 11;
 }
 
+std::string OCR::fixMissingDigit(std::string accountNumber){
+	std::string returnString = "";
+	std::string anAccountNumber;
+	int location;
+	int value;
+	switch(countUnknownCharacters(accountNumber)){
+	case 0:
+		returnString = accountNumber;
+		break;
+	case 1:
+		returnString = "AMB";
+		location = accountNumber.find('?') + 1;
+		for(int i = 0; i <= 9; i++){
+			anAccountNumber = accountNumber;
+			anAccountNumber[location-1] = char(48+i);
+			if(processCheckSum(anAccountNumber) == 0){
+				returnString += " " + anAccountNumber;
+			}
+		}
+		break;
+	default:
+		returnString = " ILL";
+		break;
+	}
+	return returnString;
+}
+
 bool OCR::checkAccountSum(std::string accountNumber){
 	if(processCheckSum(accountNumber) == 0){
 		return true;
