@@ -28,7 +28,7 @@ public:
 	std::string dec2bin(const int);
 	bool checkAccountForMissingValues(std::string);
 	bool checkAccountSum(std::string);
-
+	int processCheckSum(std::string);
 	std::bitset<12> newBitStream(std::string);
 	std::bitset<12> newBitStream(int);
 	std::bitset<12> newBitStream(std::bitset<12>);

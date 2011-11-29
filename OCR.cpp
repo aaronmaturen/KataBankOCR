@@ -56,7 +56,6 @@ int OCR::compareBitStreams(std::bitset<12> first, std::bitset<12> second){
 	return (first^=second).count();
 }
 
-
 std::string OCR::convertScannedLines(std::string lineOne, std::string lineTwo, std::string lineThree, std::string lineFour){
 	std::string::iterator it;
 	std::string scannedLine = "";
@@ -78,14 +77,17 @@ bool OCR::checkAccountForMissingValues(std::string accountNumber){
 	}
 }
 
-bool OCR::checkAccountSum(std::string accountNumber){
+int OCR::processCheckSum(std::string accountNumber){
 	int i = 0;
 	int sum = 0;
 	for(std::string::const_iterator it = accountNumber.end(); it >= accountNumber.begin(); --it){
 		sum += (*it -48) * i++;
 	}
+	return sum % 11;
+}
 
-	if(sum % 11 == 0){
+bool OCR::checkAccountSum(std::string accountNumber){
+	if(processCheckSum(accountNumber) == 0){
 		return true;
 	} else {
 		return false;
