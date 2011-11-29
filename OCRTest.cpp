@@ -144,7 +144,17 @@ TEST(OCR, TestGoodAccount){
 
 TEST(OCR, TestAccountWithUnkownNumber){
 	OCR o;
-	CHECK_EQUAL(o.validateAccount("12?456789"),"ILL");
+	CHECK_EQUAL(o.validateAccount("12?456789")," ILL");
+}
+
+TEST(OCR, TestInvalidCheckSum){
+	OCR o;
+	CHECK_EQUAL(o.checkAccountSum("664371495"),false);
+}
+
+TEST(OCR, TestAccountWithIvalidChecksum){
+	OCR o;
+	CHECK_EQUAL(o.validateAccount("664371495")," ERR");
 }
 
 

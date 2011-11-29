@@ -56,10 +56,34 @@ char OCR::processScannedCharacter(std::string lineOne, std::string lineTwo, std:
 	return translateScannedCharacter(bin2dec(serializeScannedCharacter(lineOne,lineTwo,lineThree,lineFour)));
 }
 
-std::string OCR::validateAccount(std::string accountNumber){
+bool OCR::checkAccountForMissingValues(std::string accountNumber){
 	if(accountNumber.find("?")!=std::string::npos){
-		return "ILL";
+		return false;
 	} else {
+		return true;
+	}
+}
+
+bool OCR::checkAccountSum(std::string accountNumber){
+	int i = 0;
+	int sum = 0;
+	for(std::string::const_iterator it = accountNumber.end(); it >= accountNumber.begin(); --it){
+		sum += (*it -48) * i++;
+	}
+
+	if(sum % 11 == 0){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+std::string OCR::validateAccount(std::string accountNumber){
+	if(!checkAccountForMissingValues(accountNumber)){
+			return " ILL";
+	}else if(!checkAccountSum(accountNumber)){
+		return " ERR";
+	}else {
 		return "";
 	}
 }

@@ -24,6 +24,8 @@ public:
 	int bin2dec(std::string);
 	std::string convertScannedLines(std::string, std::string, std::string, std::string);
 	std::string validateAccount(std::string);
+	bool checkAccountForMissingValues(std::string);
+	bool checkAccountSum(std::string);
 };
 
 #endif
