@@ -12,7 +12,7 @@
 *.a
 
 #Debug Directory
-Debug/**/*
+Debug/
 
 #Eclipse Settings
 .project
