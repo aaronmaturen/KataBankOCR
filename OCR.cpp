@@ -111,7 +111,7 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 
 std::string OCR::fixBadCheckSum(std::string accountNumber){
 	const int numbers[10] = {1400,72,1264,1240,456,1432,1464,1096,1528,1496};
-	std::string returnString = " AMB";
+	std::string returnString = " AMB [";
 	std::string anAccountNumber;
 	for(int j = 0; j<=9; j++){
 		for(int i = 0; i <= 9; i++){
@@ -119,11 +119,20 @@ std::string OCR::fixBadCheckSum(std::string accountNumber){
 				anAccountNumber = accountNumber;
 				anAccountNumber[i] = char(48+j);
 				if(processCheckSum(anAccountNumber) == 0){
-					returnString += " " + anAccountNumber;
+					returnString += "'" + anAccountNumber + "', ";
 				}
 			}
 		}
 	}
+
+	if(returnString == " AMB ["){
+		returnString = accountNumber + " ILL";
+	}else if(returnString.size() == 19){
+		returnString = returnString.substr(7,9);
+	}else{
+		returnString = returnString.substr(0,returnString.size()-2) + "]";
+	}
+
 	return returnString;
 }
 
