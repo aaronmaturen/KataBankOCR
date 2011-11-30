@@ -83,6 +83,17 @@ int OCR::processCheckSum(std::string accountNumber){
 	return sum % 11;
 }
 
+std::string OCR::formatMultipleAMBSolutions(std::string accountNumber,std::string returnString){
+	if(returnString == " AMB ["){
+		returnString = accountNumber + " ILL";
+	}else if(returnString.size() == 19){
+		returnString = returnString.substr(7,9);
+	}else{
+		returnString = accountNumber + returnString.substr(0,returnString.size()-2) + "]";
+	}
+	return returnString;
+}
+
 std::string OCR::fixMissingDigit(std::string accountNumber){
 	std::string returnString = "";
 	std::string anAccountNumber;
@@ -101,13 +112,7 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 				returnString += "'" + anAccountNumber + "', ";
 			}
 		}
-		if(returnString == " AMB ["){
-			returnString = accountNumber + " ILL";
-		}else if(returnString.size() == 19){
-			returnString = returnString.substr(7,9);
-		}else{
-			returnString = accountNumber + returnString.substr(0,returnString.size()-2) + "]";
-		}
+		returnString = formatMultipleAMBSolutions(accountNumber, returnString);
 		break;
 	default:
 		returnString = accountNumber + " ILL";
@@ -133,15 +138,7 @@ std::string OCR::fixBadCheckSum(std::string accountNumber){
 		}
 	}
 
-	if(returnString == " AMB ["){
-		returnString = accountNumber + " ILL";
-	}else if(returnString.size() == 19){
-		returnString = returnString.substr(7,9);
-	}else{
-		returnString = accountNumber + returnString.substr(0,returnString.size()-2) + "]";
-	}
-
-	return returnString;
+	return formatMultipleAMBSolutions(accountNumber, returnString);
 }
 
 bool OCR::checkAccountSum(std::string accountNumber){

@@ -37,6 +37,7 @@ public:
 	std::string fixMissingDigit(std::string);
 	std::string fixBadCheckSum(std::string);
 	int countUnknownCharacters(std::string);
+	std::string formatMultipleAMBSolutions(std::string,std::string);
 };
 
 #endif
