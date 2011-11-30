@@ -101,18 +101,17 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 				returnString += "'" + anAccountNumber + "', ";
 			}
 		}
+		if(returnString == " AMB ["){
+			returnString = accountNumber + " ILL";
+		}else if(returnString.size() == 19){
+			returnString = returnString.substr(7,9);
+		}else{
+			returnString = accountNumber + returnString.substr(0,returnString.size()-2) + "]";
+		}
 		break;
 	default:
-		returnString = " ILL";
-		break;
-	}
-
-	if(returnString == " AMB ["){
 		returnString = accountNumber + " ILL";
-	}else if(returnString.size() == 19){
-		returnString = returnString.substr(7,9);
-	}else{
-		returnString = returnString.substr(0,returnString.size()-2) + "]";
+		break;
 	}
 
 	return returnString;

@@ -171,6 +171,11 @@ TEST(OCR, TestFillInAnotherMissingDigit){
 	CHECK_EQUAL(o.fixMissingDigit("7325?0941"),"732540941");
 }
 
+TEST(OCR, TestFillInMultipleMissingDigit){
+	OCR o;
+	CHECK_EQUAL(o.fixMissingDigit("73?5?0941"),"73?5?0941 ILL");
+}
+
 TEST(OCR, TestAccountWithUnkownNumber){
 	OCR o;
 	CHECK_EQUAL(o.validateAccount("12?456789")," ILL");
