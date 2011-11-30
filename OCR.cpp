@@ -10,7 +10,6 @@
 
 OCR::OCR() {
 
-
 }
 
 OCR::~OCR() {
@@ -18,7 +17,6 @@ OCR::~OCR() {
 }
 
 std::string OCR::parseLine(std::string line){
-
 	std::string lineCode = "";
 	for(std::string::const_iterator it = line.begin(); it != line.end(); ++it){
 		lineCode += ((*it==' ')?"0":"1");
@@ -57,7 +55,6 @@ int OCR::compareBitStreams(std::bitset<12> first, std::bitset<12> second){
 }
 
 std::string OCR::convertScannedLines(std::string lineOne, std::string lineTwo, std::string lineThree, std::string lineFour){
-	std::string::iterator it;
 	std::string scannedLine = "";
 	for(int k = 0; k < 9; k++){
 		scannedLine += processScannedCharacter(lineOne.substr(k*3,3),lineTwo.substr(k*3,3),lineThree.substr(k*3,3),lineFour.substr(k*3,3));
@@ -95,7 +92,7 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 		returnString = accountNumber;
 		break;
 	case 1:
-		returnString = "AMB";
+		returnString = " AMB";
 		location = accountNumber.find('?') + 1;
 		for(int i = 0; i <= 9; i++){
 			anAccountNumber = accountNumber;
@@ -114,7 +111,7 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 
 std::string OCR::fixBadCheckSum(std::string accountNumber){
 	const int numbers[10] = {1400,72,1264,1240,456,1432,1464,1096,1528,1496};
-	std::string returnString = "AMB";
+	std::string returnString = " AMB";
 	std::string anAccountNumber;
 	for(int j = 0; j<=9; j++){
 		for(int i = 0; i <= 9; i++){

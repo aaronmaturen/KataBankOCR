@@ -158,17 +158,17 @@ TEST(OCR, TestRandomGoodAccountCheckSum){
 
 TEST(OCR, TestFillInMissingDigit){
 	OCR o;
-	CHECK_EQUAL(o.fixMissingDigit("78?639"),"AMB 787639");
+	CHECK_EQUAL(o.fixMissingDigit("78?639")," AMB 787639");
 }
 
 TEST(OCR, TestFillInMissingDigitFromDescription){
 	OCR o;
-	CHECK_EQUAL(o.fixMissingDigit("?23456789"),"AMB 123456789");
+	CHECK_EQUAL(o.fixMissingDigit("?23456789")," AMB 123456789");
 }
 
 TEST(OCR, TestFillInAnotherMissingDigit){
 	OCR o;
-	CHECK_EQUAL(o.fixMissingDigit("7325?0941"),"AMB 732540941");
+	CHECK_EQUAL(o.fixMissingDigit("7325?0941")," AMB 732540941");
 }
 
 TEST(OCR, TestAccountWithUnkownNumber){
@@ -223,17 +223,17 @@ TEST(OCR, TestCountOneUnknownCharacters){
 
 TEST(OCR, TestWrongChecksumOneSolution){
 	OCR o;
-	CHECK_EQUAL(o.fixBadCheckSum("111111111"),"AMB 711111111");
+	CHECK_EQUAL(o.fixBadCheckSum("111111111")," AMB 711111111");
 }
 
 TEST(OCR, TestWrongChecksumTwoSolutions){
 	OCR o;
-	CHECK_EQUAL(o.fixBadCheckSum("555555555"),"AMB 555655555 559555555");
+	CHECK_EQUAL(o.fixBadCheckSum("555555555")," AMB 555655555 559555555");
 }
 
 TEST(OCR, TestWrongChecksumThreeSolutions){
 	OCR o;
-	CHECK_EQUAL(o.fixBadCheckSum("888888888"),"AMB 888888880 888886888 888888988");
+	CHECK_EQUAL(o.fixBadCheckSum("888888888")," AMB 888888880 888886888 888888988");
 }
 
 
