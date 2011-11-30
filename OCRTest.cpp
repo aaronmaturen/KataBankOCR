@@ -158,17 +158,17 @@ TEST(OCR, TestRandomGoodAccountCheckSum){
 
 TEST(OCR, TestFillInMissingDigit){
 	OCR o;
-	CHECK_EQUAL(o.fixMissingDigit("78?639")," AMB 787639");
+	CHECK_EQUAL(o.fixMissingDigit("78?639000"),"784639000");
 }
 
 TEST(OCR, TestFillInMissingDigitFromDescription){
 	OCR o;
-	CHECK_EQUAL(o.fixMissingDigit("?23456789")," AMB 123456789");
+	CHECK_EQUAL(o.fixMissingDigit("?23456789"),"123456789");
 }
 
 TEST(OCR, TestFillInAnotherMissingDigit){
 	OCR o;
-	CHECK_EQUAL(o.fixMissingDigit("7325?0941")," AMB 732540941");
+	CHECK_EQUAL(o.fixMissingDigit("7325?0941"),"732540941");
 }
 
 TEST(OCR, TestAccountWithUnkownNumber){

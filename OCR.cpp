@@ -92,13 +92,13 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 		returnString = accountNumber;
 		break;
 	case 1:
-		returnString = " AMB";
+		returnString = " AMB [";
 		location = accountNumber.find('?') + 1;
 		for(int i = 0; i <= 9; i++){
 			anAccountNumber = accountNumber;
 			anAccountNumber[location-1] = char(48+i);
 			if(processCheckSum(anAccountNumber) == 0){
-				returnString += " " + anAccountNumber;
+				returnString += "'" + anAccountNumber + "', ";
 			}
 		}
 		break;
@@ -106,6 +106,15 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 		returnString = " ILL";
 		break;
 	}
+
+	if(returnString == " AMB ["){
+		returnString = accountNumber + " ILL";
+	}else if(returnString.size() == 19){
+		returnString = returnString.substr(7,9);
+	}else{
+		returnString = returnString.substr(0,returnString.size()-2) + "]";
+	}
+
 	return returnString;
 }
 
