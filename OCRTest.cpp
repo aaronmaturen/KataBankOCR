@@ -233,12 +233,12 @@ TEST(OCR, TestWrongChecksumOneSolution){
 
 TEST(OCR, TestWrongChecksumTwoSolutions){
 	OCR o;
-	CHECK_EQUAL(o.fixBadCheckSum("555555555")," AMB ['555655555', '559555555']");
+	CHECK_EQUAL(o.fixBadCheckSum("555555555"),"555555555 AMB ['555655555', '559555555']");
 }
 
 TEST(OCR, TestWrongChecksumThreeSolutions){
 	OCR o;
-	CHECK_EQUAL(o.fixBadCheckSum("888888888")," AMB ['888888880', '888886888', '888888988']");
+	CHECK_EQUAL(o.fixBadCheckSum("888888888"),"888888888 AMB ['888888880', '888886888', '888888988']");
 }
 
 

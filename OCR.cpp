@@ -138,7 +138,7 @@ std::string OCR::fixBadCheckSum(std::string accountNumber){
 	}else if(returnString.size() == 19){
 		returnString = returnString.substr(7,9);
 	}else{
-		returnString = returnString.substr(0,returnString.size()-2) + "]";
+		returnString = accountNumber + returnString.substr(0,returnString.size()-2) + "]";
 	}
 
 	return returnString;
