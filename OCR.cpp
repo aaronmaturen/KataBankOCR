@@ -172,7 +172,7 @@ std::string OCR::validateAccount(std::string accountNumber){
 }
 
 char OCR::translateScannedCharacter(int scannedCharacter){
-	int value = 63;
+	int value = int('?');
 	for(int i=0;i<10;i++){
 		value = ((numbers[i]==scannedCharacter) ? i + 48: value);
 	}
