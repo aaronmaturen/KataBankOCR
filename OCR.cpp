@@ -9,7 +9,16 @@
 #include <iostream>
 
 OCR::OCR() {
-
+	numbers[0] = 1400;
+	numbers[1] = 72;
+	numbers[2] = 1264;
+	numbers[3] = 1240;
+	numbers[4] = 456;
+	numbers[5] = 1432;
+	numbers[6] = 1464;
+	numbers[7] = 1096;
+	numbers[8] = 1528;
+	numbers[9] = 1496;
 }
 
 OCR::~OCR() {
@@ -123,7 +132,6 @@ std::string OCR::fixMissingDigit(std::string accountNumber){
 }
 
 std::string OCR::fixBadCheckSum(std::string accountNumber){
-	const int numbers[10] = {1400,72,1264,1240,456,1432,1464,1096,1528,1496};
 	std::string returnString = " AMB [";
 	std::string anAccountNumber;
 	for(int j = 0; j<=9; j++){
@@ -164,52 +172,9 @@ std::string OCR::validateAccount(std::string accountNumber){
 }
 
 char OCR::translateScannedCharacter(int scannedCharacter){
-	char value;
-	const int numberOne = 72;
-	const int numberTwo = 1264;
-	const int numberThree = 1240;
-	const int numberFour = 456;
-	const int numberFive = 1432;
-	const int numberSix = 1464;
-	const int numberSeven = 1096;
-	const int numberEight = 1528;
-	const int numberNine = 1496;
-	const int numberZero = 1400;
-
-	switch(scannedCharacter){
-		case numberOne:
-			value = '1';
-			break;
-		case numberTwo:
-			value = '2';
-			break;
-		case numberThree:
-			value = '3';
-			break;
-		case numberFour:
-			value = '4';
-			break;
-		case numberFive:
-			value = '5';
-			break;
-		case numberSix:
-			value = '6';
-			break;
-		case numberSeven:
-			value = '7';
-			break;
-		case numberEight:
-			value = '8';
-			break;
-		case numberNine:
-			value = '9';
-			break;
-		case numberZero:
-			value = '0';
-			break;
-		default:
-			value = '?';
-			break;
+	int value = 63;
+	for(int i=0;i<10;i++){
+		value = ((numbers[i]==scannedCharacter) ? i + 48: value);
 	}
-	return value;
+	return char(value);
 }

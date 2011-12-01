@@ -38,6 +38,9 @@ public:
 	std::string fixBadCheckSum(std::string);
 	int countUnknownCharacters(std::string);
 	std::string formatMultipleAMBSolutions(std::string,std::string);
+
+private:
+	int numbers[10];
 };
 
 #endif
