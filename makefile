@@ -1,11 +1,26 @@
 CC=g++
-CXXFLAGS=-Wall -ansi -pedantic -I ../CppUTest-v2.3/include
-LDFLAGS=-lCppUTest
-LDLIBS=-L ../CPPUTest-v2.3/lib
+CXXFLAGS=-Wall -ansi -pedantic
+CPPUTEST = ../CPPUTest-v2.3
+
 
 all: clean RunAllTests
 
+main: main.o OCR.o
+
+test: RunAllTests
+
+RunAllTests: LDFLAGS=-lCppUTest
+RunAllTests: LDLIBS=-L $(CPPUTEST)/lib
+RunAllTests: CXXFLAGS += -I $(CPPUTEST)/include
 RunAllTests: RunAllTests.o OCRTest.o OCR.o
 
-clean:
-	rm -rf a.out *.o test
+clean: clean_test clean_main
+
+clean_test: clean_bits
+	rm -f RunAllTests
+
+clean_main: clean_bits
+	rm -f main
+
+clean_bits:
+	rm -rf a.out *.o
