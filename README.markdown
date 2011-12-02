@@ -1,10 +1,10 @@
 # Bank OCR Kata in C++
 To compile and run tests:
-'''bash
+```shell
 $> make test && ./RunAllTests
-'''
+```
 
 To compile and run app:
-'''bash
+```shell
 $> make main && ./main
-'''
+```
