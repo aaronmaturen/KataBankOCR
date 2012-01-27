@@ -76,11 +76,7 @@ char OCR::processScannedCharacter(std::string lineOne, std::string lineTwo, std:
 }
 
 bool OCR::checkAccountForMissingValues(std::string accountNumber){
-	if(accountNumber.find("?")!=std::string::npos){
-		return false;
-	} else {
-		return true;
-	}
+	return (accountNumber.find("?")!=std::string::npos;
 }
 
 int OCR::processCheckSum(std::string accountNumber){
