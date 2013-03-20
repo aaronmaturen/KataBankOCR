@@ -1,3 +1,4 @@
+*.swp
 #Compiled Object Files
 *.slo
 *.lo
@@ -24,3 +25,4 @@ Debug/
 .project
 .cproject
 
+RunAllTests
