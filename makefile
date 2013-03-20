@@ -1,6 +1,6 @@
 CC=g++
 CXXFLAGS=-Wall -ansi -pedantic
-CPPUTEST = ../CPPUTest-v2.3
+CPPUTEST = ../CPPUTest-v3.3
 
 
 all: clean RunAllTests
